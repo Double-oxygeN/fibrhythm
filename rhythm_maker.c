@@ -25,7 +25,6 @@ double fmWave2(double freq, int offset) {
 }
 
 bool addWaveFromRhythmFile(int *buffer, char const *filename, int count, int offset, double freq, double amp, double (*waveform)(double, int)) {
-  printf("%s: %d %d %f %f\n", filename, count, offset, freq, amp);
   FILE *fp = fopen(filename, "r");
   int i, j, c;
   int const beatInterval = SAMPLERATE / BPS;
@@ -97,7 +96,6 @@ int main(int argc, char const *argv[]) {
 
   // create buffer
   amp = DB0 / (argc / 2 - 1);
-  printf("%f\n", amp);
   for (k = 2; k < argc; k += 2) {
     addWaveFromRhythmFile(buffer, argv[k], count, atoi(argv[k+1]), BASEFREQ * (k / 2 + 1), amp, fmWave2);
   }
